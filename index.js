@@ -60,7 +60,7 @@ function doCouch2(baseUrl, auth, membershipResp) {
   return membershipResp.json().then(function (members) {
     return Promise.all(members.cluster_nodes.map(function (node) {
       return Promise.all(requests.map(function (req) {
-        var path = '/_node/' + node + '/' + req.path;
+        var path = '/_node/' + node + req.path;
         var urlString = formatUrl(baseUrl, auth, path);
         return updateConfig(urlString, req.value);
       }));
